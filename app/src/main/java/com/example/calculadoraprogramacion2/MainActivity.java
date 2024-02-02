@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 if (opt.getCheckedRadioButtonId()==R.id.optDivision){
                     respuesta=num1/num2;
                 }
-                opt= findViewById(R.id.optOpciones2);
+
                 if (opt.getCheckedRadioButtonId()==R.id.optFactorial){
                     double factorial =1;
                     for (double i=1 ;i <=num1; i++){
