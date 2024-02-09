@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">calculadoraProgramacion2</string>
+    <string name="app_name">Conversores</string>
+    <string-array name="spnLongitud">
+        <item>Metros</item>
+        <item>Centimetros</item>
+        <item>Pulgada</item>
+        <item>Pie</item>
+        <item>Vara</item>
+        <item>Yarda</item>
+        <item>Km</item>
+        <item>Milla</item>
+    </string-array>
+
+
+
 </resources>
