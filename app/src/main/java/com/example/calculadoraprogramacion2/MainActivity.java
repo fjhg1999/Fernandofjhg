@@ -32,13 +32,16 @@ public final class MainActivity extends AppCompatActivity {
             public void onSensorChanged(SensorEvent event) {
                 double valor= event.values[0];
                 tempVal.setText("luz"+ valor);
-                if (valor<=20){
+                if (valor<=100){
                     getWindow().getDecorView().setBackgroundColor(Color.BLUE);
-                } else if (valor<=50){
+                    tempVal.setText("Brillo bajo:"+valor);
+                } else if (valor<=250){
                     getWindow().getDecorView().setBackgroundColor(Color.RED);
-                } else if (valor>50) {
-                    getWindow().getDecorView().setBackgroundColor(Color.CYAN);
-                    tempVal.setText("ni este telefono brilla tanto como vos mariposon");
+                    tempVal.setText("Brillo medio: "+valor);
+                } else if (valor>1000) {
+
+                    getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+                    tempVal.setText("brillo alto: "+ valor);
 
                 }
             }
