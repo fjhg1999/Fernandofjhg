@@ -1,5 +1,7 @@
 package com.example.calculadoraprogramacion2;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,12 +17,12 @@ public final class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tempVal = findViewById(R.id.lblSensorAcelerometro);
-        activarSensorAcelerometro();
+        tempVal = findViewById(R.id.lblSensorDeLuz);
+        activarSensorDeLuz();
     }
-    private void activarSensorAcelerometro() {
+    private void activarSensorDeLuz() {
         SensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        sensor = SensorManager.getDefaultSensor(sensor.TYPE_ACCELEROMETER);
+        sensor = SensorManager.getDefaultSensor(sensor.TYPE_LIGHT);
         if (sensor == null) {
             tempVal.setText("tu dispositivo no cuenta con el sensor acelerometro");
             finish();
@@ -28,7 +30,17 @@ public final class MainActivity extends AppCompatActivity {
         _sensorEvenListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
-                tempVal.setText("acelerometro:x = "+ event.values[0]+", y = "+event.values[1]+", z = "+ event.values[2]);
+                double valor= event.values[0];
+                tempVal.setText("luz"+ valor);
+                if (valor<=20){
+                    getWindow().getDecorView().setBackgroundColor(Color.BLUE);
+                } else if (valor<=50){
+                    getWindow().getDecorView().setBackgroundColor(Color.RED);
+                } else if (valor>50) {
+                    getWindow().getDecorView().setBackgroundColor(Color.CYAN);
+                    tempVal.setText("ni este telefono brilla tanto como vos mariposon");
+
+                }
             }
             @Override
             public void onAccuracyChanged(Sensor sensor, int accuracy) {};

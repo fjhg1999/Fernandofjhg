@@ -8,18 +8,13 @@
 
 
     <TextView
-        android:id="@+id/lblSensorAcelerometro"
+        android:id="@+id/lblSensorDeLuz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="60dp"
-        android:text="sensor acelerometro" />
+        android:text="sensor de luz" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:text="CHENTE WAWAWAWAWA" />
+
 
 </RelativeLayout>
