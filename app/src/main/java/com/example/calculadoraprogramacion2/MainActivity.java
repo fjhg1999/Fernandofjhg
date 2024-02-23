@@ -17,12 +17,12 @@ public final class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tempVal = findViewById(R.id.lblSensorDeLuz);
+        tempVal = findViewById(R.id.lblSensorDeAproximidad);
         activarSensorDeLuz();
     }
     private void activarSensorDeLuz() {
         SensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        sensor = SensorManager.getDefaultSensor(sensor.TYPE_LIGHT);
+        sensor = SensorManager.getDefaultSensor(sensor.TYPE_PROXIMITY);
         if (sensor == null) {
             tempVal.setText("tu dispositivo no cuenta con el sensor acelerometro");
             finish();
@@ -31,14 +31,13 @@ public final class MainActivity extends AppCompatActivity {
             @Override
             public void onSensorChanged(SensorEvent event) {
                 double valor= event.values[0];
-                tempVal.setText("luz"+ valor);
+                tempVal.setText("Proximidad"+ valor);
                 if (valor<=20){
                     getWindow().getDecorView().setBackgroundColor(Color.BLUE);
                 } else if (valor<=50){
                     getWindow().getDecorView().setBackgroundColor(Color.RED);
                 } else if (valor>50) {
                     getWindow().getDecorView().setBackgroundColor(Color.CYAN);
-                    tempVal.setText("ni este telefono brilla tanto como vos mariposon");
 
                 }
             }
