@@ -31,11 +31,11 @@ public final class MainActivity extends AppCompatActivity {
             @Override
             public void onSensorChanged(SensorEvent event) {
                 double valor= event.values[0];
-                tempVal.setText("luz"+ valor);
+                tempVal.setText("brillo vajo; "+ valor);
                 if (valor<=100){
                     getWindow().getDecorView().setBackgroundColor(Color.BLUE);
-                    tempVal.setText("Brillo bajo:"+valor);
-                } else if (valor<=250){
+                    tempVal.setText("Brillo bajo: "+valor);
+                } else if (valor<=1000){
                     getWindow().getDecorView().setBackgroundColor(Color.RED);
                     tempVal.setText("Brillo medio: "+valor);
                 } else if (valor>1000) {
