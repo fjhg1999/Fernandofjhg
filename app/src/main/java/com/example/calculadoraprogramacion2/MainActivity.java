@@ -38,61 +38,61 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnRegresar = findViewById(R.id.fabListaAmigos);
+        btnRegresar = findViewById(R.id.fabListaproductos);
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent regresarLista = new Intent(getApplicationContext(), lista_amigos.class);
+                Intent regresarLista = new Intent(getApplicationContext(), lista_tienda.class);
                 startActivity(regresarLista);
             }
         });
-        btn = findViewById(R.id.btnGuardarAmigo);
+        btn = findViewById(R.id.btnGuardartienda);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tempVal = findViewById(R.id.txtnombre);
-                String nombre = tempVal.getText().toString();
+                tempVal = findViewById(R.id.txtcodigo);
+                String codigo = tempVal.getText().toString();
 
-                tempVal = findViewById(R.id.txtdireccion);
-                String direccion = tempVal.getText().toString();
+                tempVal = findViewById(R.id.txtdescripcion);
+                String descripcion = tempVal.getText().toString();
 
-                tempVal = findViewById(R.id.txtTelefono);
-                String tel = tempVal.getText().toString();
+                tempVal = findViewById(R.id.txtmarca);
+                String marca = tempVal.getText().toString();
 
-                tempVal = findViewById(R.id.txtEmail);
-                String email = tempVal.getText().toString();
+                tempVal = findViewById(R.id.txtpresentacion);
+                String presentacion = tempVal.getText().toString();
 
-                tempVal = findViewById(R.id.txtDui);
-                String dui = tempVal.getText().toString();
+                tempVal = findViewById(R.id.txtprecio);
+                String precio = tempVal.getText().toString();
 
-                String[] datos = new String[]{id,nombre,direccion,tel,email,dui, urlCompletaFoto};
+                String[] datos = new String[]{id,codigo,descripcion,marca,presentacion,precio, urlCompletaFoto};
                 DB db = new DB(getApplicationContext(),"", null, 1);
-                String respuesta = db.administrar_amigos(accion, datos);
+                String respuesta = db.administrar_tienda(accion, datos);
                 if( respuesta.equals("ok") ){
                     mostrarMsg("Amigos registrado con exito.");
-                    listarAmigos();
+                    listartienda();
                 }else {
                     mostrarMsg("Error al intentar registrar el amigo: "+ respuesta);
                 }
             }
         });
-        img = findViewById(R.id.btnImgAmigo);
+        img = findViewById(R.id.btnImgtienda);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tomarFotoAmigo();
+                tomarFototienda();
             }
         });
-        mostrarDatosAmigos();
+        mostrarDatostienda();
     }
-    private void tomarFotoAmigo(){
+    private void tomarFototienda(){
         tomarFotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File fotoAmigo = null;
+        File fototienda = null;
         try{
-            fotoAmigo = crearImagenamigo();
-            if( fotoAmigo!=null ){
+            fototienda = crearImagentienda();
+            if( fototienda!=null ){
                 Uri urifotoAmigo = FileProvider.getUriForFile(MainActivity.this,
-                        "com.example.calculadoraprogramacion2.fileprovider", fotoAmigo);
+                        "com.example.calculadoraprogramacion2.fileprovider", fototienda);
                 tomarFotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, urifotoAmigo);
                 startActivityForResult(tomarFotoIntent, 1);
             }else{
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             mostrarMsg("Error al seleccionar la foto"+ e.getMessage());
         }
     }
-    private File crearImagenamigo() throws Exception{
+    private File crearImagentienda() throws Exception{
         String fechaHoraMs = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()),
                 fileName = "imagen_"+fechaHoraMs+"_";
         File dirAlmacenamiento = getExternalFilesDir(Environment.DIRECTORY_DCIM);
@@ -127,31 +127,31 @@ public class MainActivity extends AppCompatActivity {
         urlCompletaFoto = image.getAbsolutePath();
         return image;
     }
-    private void mostrarDatosAmigos(){
+    private void mostrarDatostienda(){
         try{
             Bundle parametros = getIntent().getExtras();
             accion = parametros.getString("accion");
 
             if(accion.equals("modificar")){
-                String[] amigos = parametros.getStringArray("amigos");
-                id = amigos[0];
+                String[] tienda = parametros.getStringArray("amigos");
+                id = tienda[0];
 
-                tempVal = findViewById(R.id.txtnombre);
-                tempVal.setText(amigos[1]);
+                tempVal = findViewById(R.id.txtcodigo);
+                tempVal.setText(tienda[1]);
 
-                tempVal = findViewById(R.id.txtdireccion);
-                tempVal.setText(amigos[2]);
+                tempVal = findViewById(R.id.txtdescripcion);
+                tempVal.setText(tienda[2]);
 
-                tempVal = findViewById(R.id.txtTelefono);
-                tempVal.setText(amigos[3]);
+                tempVal = findViewById(R.id.txtmarca);
+                tempVal.setText(tienda[3]);
 
-                tempVal = findViewById(R.id.txtEmail);
-                tempVal.setText(amigos[4]);
+                tempVal = findViewById(R.id.txtpresentacion);
+                tempVal.setText(tienda[4]);
 
-                tempVal = findViewById(R.id.txtDui);
-                tempVal.setText(amigos[5]);
+                tempVal = findViewById(R.id.txtprecio);
+                tempVal.setText(tienda[5]);
 
-                urlCompletaFoto = amigos[6];
+                urlCompletaFoto = tienda[6];
                 Bitmap imagenBitmap = BitmapFactory.decodeFile(urlCompletaFoto);
                 img.setImageBitmap(imagenBitmap);
             }
@@ -162,8 +162,8 @@ public class MainActivity extends AppCompatActivity {
     private void mostrarMsg(String msg){
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
     }
-    private void listarAmigos(){
-        Intent intent = new Intent(getApplicationContext(), lista_amigos.class);
+    private void listartienda(){
+        Intent intent = new Intent(getApplicationContext(), lista_tienda.class);
         startActivity(intent);
     }
 }
