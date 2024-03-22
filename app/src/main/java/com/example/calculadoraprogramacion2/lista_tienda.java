@@ -75,7 +75,7 @@ public class lista_tienda extends AppCompatActivity {
                         cTienda.getString(6),
                 };
                 parametros.putString("accion", "modificar");
-                parametros.putStringArray("amigos", amigos);
+                parametros.putStringArray("tienda", amigos);
                 abrirActividad(parametros);
             }else if (item.getItemId()==R.id.mnxEliminar){
 
@@ -150,7 +150,7 @@ public class lista_tienda extends AppCompatActivity {
 
                 registerForContextMenu(lts);
             }else{
-                mostrarMsg("No hay Datos de amigos que mostrar.");
+                mostrarMsg("No hay Datos de tienda que mostrar.");
             }
         }catch (Exception e){
             mostrarMsg("Error al mostrar datos: "+ e.getMessage());

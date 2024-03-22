@@ -21,12 +21,13 @@
         android:id="@+id/txtcodigo"
         android:hint="Codigo"
         android:layout_below="@id/btnImgtienda"
+        android:inputType="numberDecimal"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
         android:id="@+id/txtdescripcion"
-        android:hint="Descricion"
+        android:hint="Descripcion"
         android:inputType="textMultiLine"
         android:layout_below="@id/txtcodigo"
         android:layout_marginTop="40dp"

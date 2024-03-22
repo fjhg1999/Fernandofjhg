@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 DB db = new DB(getApplicationContext(),"", null, 1);
                 String respuesta = db.administrar_tienda(accion, datos);
                 if( respuesta.equals("ok") ){
-                    mostrarMsg("Amigos registrado con exito.");
+                    mostrarMsg("Producto registrado con exito.");
                     listartienda();
                 }else {
                     mostrarMsg("Error al intentar registrar el amigo: "+ respuesta);
