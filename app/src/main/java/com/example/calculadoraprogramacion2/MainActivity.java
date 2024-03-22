@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             accion = parametros.getString("accion");
 
             if(accion.equals("modificar")){
-                String[] tienda = parametros.getStringArray("amigos");
+                String[] tienda = parametros.getStringArray("tienda");
                 id = tienda[0];
 
                 tempVal = findViewById(R.id.txtcodigo);
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 img.setImageBitmap(imagenBitmap);
             }
         }catch (Exception e){
-            mostrarMsg("Error al mostrar los datos amigos");
+            mostrarMsg("Error al mostrar los datos");
         }
     }
     private void mostrarMsg(String msg){
